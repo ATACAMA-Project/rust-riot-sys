@@ -23,6 +23,9 @@ c2rust-bitfields = { version = "0.3", features = ["no_std"] }
 riot-build = { version = "< 0.2.0", optional = true }
 riot-rs-core = { version = "< 0.2.0", optional = true }
 
+portable-atomic = {version = "1.0.1", features = ["critical-section"]}
+critical-section = {version = "1.1.1", features = ["restore-state-bool"]} 
+
 [build-dependencies]
 bindgen = "^0.64"
 shlex = "^1"

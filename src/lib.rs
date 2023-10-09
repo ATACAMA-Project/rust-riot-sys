@@ -121,6 +121,7 @@ pub mod libc;
 mod intrinsics_replacements;
 
 mod bindgen;
+mod critical_section;
 pub mod inline;
 
 include!(concat!(env!("OUT_DIR"), "/toplevel_from_inline.rs"));
