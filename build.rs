@@ -60,6 +60,9 @@ fn main() {
         let mut consensus_cc: Option<&str> = None;
         let mut consensus_cflag_groups: Option<Vec<Vec<&str>>> = None;
         for entry in parsed.iter() {
+            if entry.arguments[0] == "clang++" {
+                continue;
+            }
             if let Some(consensus_cc) = consensus_cc.as_ref() {
                 assert!(consensus_cc == &entry.arguments[0])
             } else {
@@ -373,6 +376,13 @@ fn main() {
 
     let arguments: Vec<_> = core::iter::once("any-cc".to_string())
         .chain(cflags.into_iter())
+        .chain({
+            if cfg!(feature = "dummy-atomic-definitions") {
+                vec!["-DDUMMY_ATOMICS=1".to_string()]
+            } else {
+                vec![]
+            }
+        })
         .chain(core::iter::once(c2rust_infile.to_string()))
         .collect();
     let compile_commands = json!([{
@@ -414,7 +424,6 @@ fn main() {
             "--preserve-unused-functions",
             "--emit-modules",
             "--emit-no-std",
-            "--translate-const-macros",
             "--overwrite-existing",
             "--fail-on-error",
         ])

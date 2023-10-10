@@ -94,6 +94,7 @@ static inline void __masked_builtin_arm_set_fpscr(int fpscr){
 // Exported Clang AST was invalid. Check warnings above for unimplemented features.
 // --> /usr/lib/gcc/arm-none-eabi/10.3.1/include/stdatomic.h:69:1
 // [-Wclang-ast]
+#ifndef DUMMY_ATOMICS
 #undef __CLANG_STDATOMIC_H
 #undef _STDATOMIC_H_
 #undef _STDATOMIC_H
@@ -135,7 +136,7 @@ static inline void __masked_builtin_arm_set_fpscr(int fpscr){
 #undef atomic_ptrdiff_t
 #undef atomic_intmax_t
 #undef atomic_uintmax_t
-
+#endif
 // Allow header files that pull in lots of odd stuff but don't depend on
 // inlines -- like nimble's host/ble_gap.h -- to opt out of C2Rust altogether
 #define IS_C2RUST
