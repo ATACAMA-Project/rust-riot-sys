@@ -580,6 +580,7 @@ fn main() {
         "gnrc_netreg_entry_init_pid",
         "gpio_is_valid",
         "irq_disable",
+        "irq_enable",
         "irq_is_enabled",
         "irq_is_in",
         "irq_restore",
